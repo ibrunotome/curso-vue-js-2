@@ -12,6 +12,7 @@
           <a href="#" class="btn btn-primary" @click.prevent="createNovoJogo">Novo jogo</a>
           <br><br>
           <div v-if="view == 'tabela'">
+            <input type="text" class="form-control" v-model="filter">
             <table class="table table-striped">
               <thead>
                 <tr>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import {Time} from './time'
 import _ from 'lodash'
 
-require('popper.js/dist/umd/popper');
+require('popper.js/dist/umd/popper')
 require('style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css')
 require('bootstrap')
 
@@ -13,6 +13,7 @@ let vue = new Vue({
       keys: ['pontos', 'gm', 'gs'],
       sort: ['desc', 'desc', 'asc']
     },
+    filter: '',
     colunas: ['nome', 'pontos', 'gm', 'gs', 'saldo'],
     times: [
       new Time('Palmeiras', require('./assets/palmeiras_60x60.png')),
@@ -50,11 +51,11 @@ let vue = new Vue({
   },
   methods: {
     fimJogo() {
-      let timeAdversario = this.novoJogo.fora.time;
-      let gols = +this.novoJogo.casa.gols;
-      let golsAdversario = +this.novoJogo.fora.gols;
+      let timeAdversario = this.novoJogo.fora.time
+      let gols = +this.novoJogo.casa.gols
+      let golsAdversario = +this.novoJogo.fora.gols
 
-      this.novoJogo.casa.time.fimJogo(timeAdversario, gols, golsAdversario);
+      this.novoJogo.casa.time.fimJogo(timeAdversario, gols, golsAdversario)
       this.showView('tabela')
     },
     createNovoJogo() {
@@ -68,26 +69,30 @@ let vue = new Vue({
       this.showView('novoJogo')
     },
     showView(view) {
-      this.view = view;
+      this.view = view
     },
     sortBy(coluna) {
-      this.order.keys = coluna;
+      this.order.keys = coluna
       this.order.sort = this.order.sort == 'desc' ? 'asc' : 'desc'
     }
   },
   computed: {
     timesFiltered() {
-      return _.orderBy(this.times, this.order.keys, this.order.sort)
+      let colecao = _.orderBy(this.times, this.order.keys, this.order.sort)
+    
+      return _.filter(colecao, item => {
+        this.filter = this.filter.toLowerCase();
+        
+        return item.nome.toLowerCase().indexOf(this.filter) >= 0
+      })
     }
   },
   filters: {
     saldo(time) {
-      return time.gm - time.gs;
+      return time.gm - time.gs
     },
     ucwords(value) {
-      return value.charAt(0).toUpperCase() + value.slice(1);
+      return value.charAt(0).toUpperCase() + value.slice(1)
     }
   }
 })
-
-console.log(vue);
