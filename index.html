@@ -5,21 +5,37 @@
     <title>vue2</title>
   </head>
   <body>
-    <div id="app">
-      <h1>Campeonato brasileiro série A</h1>
-      <ul>
-        <li v-for="(time, index) in times">
-            {{ index + 1 }} {{ time.nome }} <img :src="time.escudo">
-        </li>
-      </ul>
-      <ul>
-        <li v-for="x in 100">{{ x }}</li>
-      </ul>
-      <ul>
-          <li v-for="(valor, chave, index) in alfabeto">
-            {{ index }} - {{ chave }}: {{ valor }}
-          </li>
-        </ul>
+    <div id="app" class="container">
+      <div class="row">
+        <h3>Campeonato brasileiro série A - 2016</h3>
+        <br>
+        <br>
+        <table class="table table-striped">
+          <thread>
+            <tr>
+              <th>Time</th>
+              <th>Pontos</th>
+              <th>GM</th>
+              <th>GS</th>
+              <th>Saldo</th>
+            </tr>
+          </thread>
+          <tbody>
+            <thead>
+              <tr v-for="time in times">
+                <td>
+                  <img :src="time.escudo" height="30px" width="30px">
+                  <strong>{{ time.nome }}</strong>
+                </td>
+                <td>{{ time.pontos }}</td>
+                <td>{{ time.gm }}</td>
+                <td>{{ time.sm }}</td>
+                <td>Saldo</td>
+              </tr>
+            </thead>
+          </tbody>
+        </table>
+      </div>
     </div>
     <script src="/dist/build.js"></script>
   </body>
