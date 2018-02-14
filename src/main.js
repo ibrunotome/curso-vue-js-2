@@ -5,7 +5,7 @@ require('popper.js/dist/umd/popper');
 require('style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css')
 require('bootstrap')
 
-new Vue({
+let vue = new Vue({
   el: '#app',
   data: {
     times: [
@@ -51,3 +51,5 @@ new Vue({
     this.novoJogo.fora.gols = 0
   }
 })
+
+console.log(vue);
