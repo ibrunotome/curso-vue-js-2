@@ -11,18 +11,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader'
-        ],
-      },      {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: 'vue',
         options: {
-          loaders: {
-          }
-          // other vue-loader options go here
+          // vue-loader options go here
         }
       },
       {
@@ -36,22 +28,26 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.(woff|woff2|ttf|svg|eot)$/,
+        loader: 'url-loader'
       }
     ]
   },
+  plugins: [
+      new webpack.ProvidePlugin({
+        'jQuery': 'jquery'
+      })
+  ],
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
+      'vue$': 'vue/dist/vue'
+    }
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true,
-    overlay: true
-  },
-  performance: {
-    hints: false
+    noInfo: true
   },
   devtool: '#eval-source-map'
 }
@@ -66,7 +62,6 @@ if (process.env.NODE_ENV === 'production') {
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
       compress: {
         warnings: false
       }
