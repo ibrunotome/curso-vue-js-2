@@ -11,28 +11,20 @@
         <br>
         <br>
         <table class="table table-striped">
-          <thread>
-            <tr>
-              <th>Time</th>
-              <th>Pontos</th>
-              <th>GM</th>
-              <th>GS</th>
-              <th>Saldo</th>
-            </tr>
-          </thread>
+          <thead>
+            <tr><th v-for="coluna in colunas">{{ coluna | ucwords }}</th></tr>
+          </tread>
           <tbody>
-            <thead>
-              <tr v-for="time in times">
-                <td>
-                  <img :src="time.escudo" height="30px" width="30px">
-                  <strong>{{ time.nome }}</strong>
-                </td>
-                <td>{{ time.pontos }}</td>
-                <td>{{ time.gm }}</td>
-                <td>{{ time.gs }}</td>
-                <td>Saldo</td>
-              </tr>
-            </thead>
+            <tr v-for="time in times">
+              <td>
+                <img :src="time.escudo" height="30px" width="30px">
+                <strong>{{ time.nome }}</strong>
+              </td>
+              <td>{{ time.pontos }}</td>
+              <td>{{ time.gm }}</td>
+              <td>{{ time.gs }}</td>
+              <td>{{ time | saldo }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
