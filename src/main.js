@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import {Time} from './time'
+import _ from 'lodash'
 
 require('popper.js/dist/umd/popper');
 require('style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css')
@@ -8,6 +9,10 @@ require('bootstrap')
 let vue = new Vue({
   el: '#app',
   data: {
+    order: {
+      keys: ['pontos', 'gm', 'gs'],
+      sort: ['desc', 'desc', 'asc']
+    },
     colunas: ['nome', 'pontos', 'gm', 'gs', 'saldo'],
     times: [
       new Time('Palmeiras', require('./assets/palmeiras_60x60.png')),
@@ -64,6 +69,15 @@ let vue = new Vue({
     },
     showView(view) {
       this.view = view;
+    },
+    sortBy(coluna) {
+      this.order.keys = coluna;
+      this.order.sort = this.order.sort == 'desc' ? 'asc' : 'desc'
+    }
+  },
+  computed: {
+    timesFiltered() {
+      return _.orderBy(this.times, this.order.keys, this.order.sort)
     }
   },
   filters: {

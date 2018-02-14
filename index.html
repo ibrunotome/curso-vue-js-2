@@ -14,10 +14,14 @@
           <div v-if="view == 'tabela'">
             <table class="table table-striped">
               <thead>
-                <tr><th v-for="coluna in colunas">{{ coluna | ucwords }}</th></tr>
+                <tr>
+                  <th v-for="coluna in colunas">
+                    <a href="#" @click.prevent="sortBy(coluna)">{{ coluna | ucwords }}</a>
+                  </th>
+                </tr>
               </tread>
               <tbody>
-                <tr v-for="time in times">
+                <tr v-for="time in timesFiltered">
                   <td>
                     <img :src="time.escudo" height="30px" width="30px">
                     <strong>{{ time.nome }}</strong>
