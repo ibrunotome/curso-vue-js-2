@@ -49,6 +49,15 @@ let vue = new Vue({
     this.novoJogo.casa.gols = 0
     this.novoJogo.fora.time = this.times[indexFora]
     this.novoJogo.fora.gols = 0
+  },
+  methods: {
+    fimJogo() {
+      let timeAdversario = this.novoJogo.fora.time;
+      let gols = +this.novoJogo.casa.gols;
+      let golsAdversario = +this.novoJogo.fora.gols;
+
+      this.novoJogo.casa.time.fimJogo(timeAdversario, gols, golsAdversario);
+    }
   }
 })
 
