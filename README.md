@@ -6,8 +6,6 @@ O Vue.js é um framework Javascript para construção de aplicações web ricas.
 
 [https://www.schoolofnet.com/curso-vuejs-20/](https://www.schoolofnet.com/curso-vuejs-20/)
 
-> A Vue.js project
-
 ## Build Setup
 
 ``` bash
